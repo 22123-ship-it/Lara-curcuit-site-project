@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lara Racing Circuit | A1 Motor Park</title>
+    <!-- Importing a racing-style font and a clean sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- MANDATORY: LINKING THE EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- FontAwesome for Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        /* Override hero background with requested image */
+        .hero-section {
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('assets/header.png') !important;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="header-container">
+            <!-- Left Navigation -->
+            <nav class="nav-group left">
+                <a href="#" class="nav-link">НАЧАЛО</a>
+                <a href="#" class="nav-link">ЗА НАС</a>
+            </nav>
+
+            <!-- Center Logo -->
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Lara Racing Circuit Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/800x800/e10600/ffffff?text=Lara'">
+            </div>
+
+            <!-- Right Navigation -->
+            <nav class="nav-group right">
+                <a href="#" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Left Sidebar: Media Stack -->
+    <aside class="video-sidebar left">
+        <div class="video-card">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/video1.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-card">
+            <img src="assets/videos/picture2.png" alt="Circuit View 2" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="video-card">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/video3.mp4" type="video/mp4">
+            </video>
+        </div>
+    </aside>
+
+    <!-- Center: White Content Canvas (SCROLLABLE) -->
+    <main class="content-canvas">
+        <div class="hero-section">
+            <h1 class="hero-title">LARA RACING CIRCUIT</h1>
+            <p class="hero-subtitle">A1 MOTOR PARK - НАЙ-МОДЕРНАТА ПИСТА В БЪЛГАРИЯ</p>
+            <button class="cta-button"><span>ЗАПАЗИ ЧАС ЗА ОБИКОЛКА</span></button>
+        </div>
+
+        <div class="info-section">
+            <h2>Технически спецификации</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-road"></i> Дължина на трасето</h3>
+                    <p>Основната конфигурация е с дължина от 3.5 километра, проектирана по най-високите стандарти за безопасност и динамично каране.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-location-dot"></i> Локация</h3>
+                    <p>Разположена стратегически близо до Сапарева баня, пистата предлага уникален планински въздух и спиращи дъха гледки по време на каране.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-car-side"></i> Възможности за наемане</h3>
+                    <p>Пистата е идеална за дрифт състезания, пистови шампионати и частни трак дни за любители на високите скорости.</p>
+                </div>
+                <div class="info-card">
+                    <h3><i class="fa-solid fa-calendar-days"></i> Предстоящи събития</h3>
+                    <p>Национален дрифт шампионат - Юли 15<br>Трак ден за суперколи - Август 02<br>Мотоциклетна купа - Септември 10</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+               <p style="color: #888; font-size: 0.9rem;">СТАНИ ЧАСТ ОТ КЛУБА И ПОЛУЧИ ЕКСКЛУЗИВЕН ДОСТЪП ДО ПАДОКА.</p>
+            </div>
+
+            <div class="info-section">
+                <h2>Зад кулисите на A1 Motor Park</h2>
+                <p style="margin-bottom: 20px;">Lara Racing Circuit (известна още като A1 Motor Park) е проект, целящ да превърне България в център на балканския моторспорт. Съоръжението разполага с модерни боксове, център за телеметрия и зони за зрители с перфектна видимост.</p>
+
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-helmet-safety"></i> Стандарти за сигурност</h3>
+                        <p>Инфраструктурата отговаря на международните изисквания, включваща широки зони за сигурност и асфалт с високо сцепление.</p>
+                    </div>
+                    <div class="info-card">
+                        <h3><i class="fa-solid fa-utensils"></i> Хотели и Ресторанти</h3>
+                        <p>В непосредствена близост до комплекса се намират спа хотелите на Сапарева баня, предлагащи първокласно настаняване и отдих след адреналина на пистата.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding: 40px; text-align: center;">
+                <h3>Пълното изживяване на пистата</h3>
+                <p style="margin: 15px 0; color: #555;">Открийте предизвикателствата на завоите на Lara Circuit. Всяка отсечка е проектирана да тества лимита на автомобила и уменията на пилота.</p>
+                <button class="cta-button" style="margin-top: 20px;"><span>ВИЖ КАРТА НА ПИСТАТА</span></button>
+            </div>
+
+            <div style="margin-top: 40px; text-align: center; padding-bottom: 40px;">
+               <p style="color: var(--f1-red); font-size: 1.2rem; font-weight: bold;">Усети тръпката. Бъди шампион.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Right Sidebar: Media Stack -->
+    <aside class="video-sidebar right">
+        <div class="video-card">
+            <img src="assets/videos/picture1.png" alt="Circuit View 1" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="video-card">
+            <video autoplay muted loop playsinline>
+                <source src="assets/videos/video2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-card">
+            <img src="assets/videos/picture3.png" alt="Circuit View 3" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.</p>
+    </footer>
+
+</body>
+</html>

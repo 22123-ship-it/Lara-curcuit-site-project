@@ -1,0 +1,394 @@
+/* --- CSS VARIABLES & RESET --- */
+:root {
+    --f1-red: #e10600;
+    --f1-dark-red: #b30500;
+    --asphalt: #15151e;
+    --text-white: #ffffff;
+    --track-line: #ffffff;
+    --sidebar-width: 280px;
+    --header-height: 120px;
+    --footer-height: 100px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Set the overall background, no gradient */
+body {
+    background-color: var(--asphalt);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .nav-link {
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+}
+
+/* --- HEADER DESIGN (Sticky at top) --- */
+.main-header {
+    background-color: var(--f1-red);
+    height: var(--header-height);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky; 
+    top: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    z-index: 1000;
+    border-bottom: 4px solid var(--track-line);
+}
+
+.header-container {
+    display: flex;
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-group {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-group.left {
+    justify-content: flex-end;
+    padding-right: 40px;
+}
+
+.nav-group.right {
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+.nav-link {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+    font-style: italic;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--text-white);
+    transition: width 0.3s ease;
+    transform: skew(-20deg);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.btn-outline {
+    border: 2px solid rgba(255,255,255,0.4);
+    padding: 8px 20px;
+    border-radius: 4px;
+    transform: skew(-20deg);
+}
+
+.btn-outline span {
+    display: inline-block;
+    transform: skew(20deg);
+}
+
+.btn-outline:hover {
+    background: white;
+    color: var(--f1-red);
+    border-color: white;
+}
+
+/* Logo Styling */
+.logo-wrapper {
+    flex: 0 0 auto;
+    width: 160px;
+    height: 160px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid var(--f1-dark-red);
+    position: relative;
+    top: 20px; 
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1001;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo-wrapper:hover {
+    transform: scale(1.05);
+}
+
+.logo-img {
+    /* UPDATED: Make the image fill the entire wrapper */
+    width: 100%; 
+    height: auto;
+    display: block; /* Important for images */
+}
+
+/* --- FIXED SIDE BARS (VIDEO COLUMNS) --- */
+.video-sidebar {
+    position: fixed;
+    top: 0;
+    width: var(--sidebar-width);
+    height: 100vh; /* Occupy full screen height */
+    /* Padding to clear header and leave space at bottom */
+    padding: calc(var(--header-height) + 20px) 10px 40px 10px; 
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    z-index: 900; 
+    overflow-y: hidden; /* Lock scrolling */
+    align-items: center;
+    justify-content: space-between; /* Distribute cards vertically */
+}
+
+.video-sidebar.left {
+    left: 0;
+}
+
+.video-sidebar.right {
+    right: 0;
+}
+
+.video-card {
+    background: #000;
+    width: 100%;
+    max-width: var(--sidebar-width);
+    aspect-ratio: 16/9;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    flex-grow: 1; /* Allows videos to fill remaining vertical space */
+    min-height: 120px;
+}
+
+.video-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.video-card:hover video {
+    opacity: 1;
+}
+
+.video-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: white;
+    font-size: 0.8rem;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    animation: blink 1s infinite;
+}
+
+/* --- CENTRAL CANVAS (Scrolling Content) --- */
+.content-canvas {
+    background-color: #ffffff;
+    border-radius: 2px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    
+    /* Margins to fit between the fixed sidebars */
+    margin-left: calc(var(--sidebar-width) + 20px);
+    margin-right: calc(var(--sidebar-width) + 20px);
+    margin-top: 40px; 
+    margin-bottom: 40px; 
+    min-height: 100vh;
+}
+
+.content-canvas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--asphalt) 0%, var(--f1-red) 50%, var(--asphalt) 100%);
+    z-index: 10;
+}
+
+.hero-section {
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1534349727038-a28a2a4b868e?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    font-style: italic;
+    text-shadow: 4px 4px 0px var(--f1-red);
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    background-color: var(--f1-red);
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    transform: skew(-20deg);
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    background-color: var(--f1-dark-red);
+    transform: skew(-20deg) scale(1.05);
+}
+
+.cta-button span {
+    display: inline-block;
+    transform: skew(20deg);
+}
+
+.info-section {
+    padding: 40px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.info-card h3 {
+    color: var(--f1-red);
+    margin-bottom: 10px;
+    border-left: 4px solid var(--asphalt);
+    padding-left: 10px;
+}
+
+.info-card p {
+    line-height: 1.6;
+    color: #555;
+}
+
+/* --- ANIMATIONS --- */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* --- FOOTER --- */
+footer {
+    background: black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-top: 4px solid var(--f1-red);
+    height: var(--footer-height);
+    z-index: 1000;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1200px) {
+    /* Hide the video sidebars and let the content fill the screen */
+    .video-sidebar {
+        display: none; 
+    }
+    .content-canvas {
+        margin-left: 20px;
+        margin-right: 20px;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .main-header {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .logo-wrapper {
+        position: static;
+        transform: none;
+        margin: 10px 0;
+        width: 100px;
+        height: 100px;
+        order: -1;
+    }
+
+    .nav-group {
+        width: 100%;
+        justify-content: center !important;
+        padding: 10px 0 !important;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}
