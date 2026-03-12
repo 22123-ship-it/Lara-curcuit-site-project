@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта на пистата | A1 Motor Park</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="track_style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="nav-group left">
+                <a href="index.html" class="nav-link">НАЧАЛО</a>
+                <a href="#" class="nav-link">ЗА НАС</a>
+            </nav>
+
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Lara Racing Circuit Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/800x800/e10600/ffffff?text=Lara'">
+            </div>
+
+            <nav class="nav-group right">
+                <a href="#" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
+            </nav>
+        </div>
+    </header>
+
+    <aside class="video-sidebar left">
+        <div class="video-card">
+            <video autoplay muted loop playsinline><source src="assets/videos/video1.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video-card">
+            <img src="assets/videos/picture2.png" alt="Circuit View 2" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="video-card">
+            <video autoplay muted loop playsinline><source src="assets/videos/video3.mp4" type="video/mp4"></video>
+        </div>
+    </aside>
+
+    <main class="content-canvas">
+        <div class="info-section">
+            <div class="track-header-title">
+                БЪЛГАРИЯ - <span style="color: var(--f1-red);">САМОКОВ</span>
+            </div>
+
+            <div class="track-map-container">
+                <img src="assets/track-layout.png" alt="Схема на A1 Motor Park" onerror="this.onerror=null; this.src='https://placehold.co/1200x600/eeeeee/333333?text=A1+MOTOR+PARK+LAYOUT'">
+            </div>
+
+            <div class="f1-stats-box">
+                <h2>ТЕХНИЧЕСКИ ДАННИ - A1 MOTOR PARK</h2>
+                <div class="stat-row">
+                    <span class="stat-label">ОФИЦИАЛНО ОТКРИВАНЕ</span>
+                    <span class="stat-value">21 МАРТ 2026</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">ДЪЛЖИНА НА ТРАСЕТО</span>
+                    <span class="stat-value">4.000 km</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">КОНФИГУРАЦИИ</span>
+                    <span class="stat-value">21 ВАРИАНТА</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">НАЙ-ДЪЛГА ПРАВА</span>
+                    <span class="stat-value">> 900 m</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">МАКСИМАЛНА СКОРОСТ</span>
+                    <span class="stat-value">280+ km/h</span>
+                </div>
+            </div>
+
+            <div class="track-article">
+                <h3>НОВАТА ЕРА: ОТ LARA RACING КЪМ A1 MOTOR PARK</h3>
+                <p>Разположена само на 5 минути от <strong>Самоков</strong>, пистата е проектирана по световните стандарти на FIA и FIM. Със своята ширина от 12 до 15 метра, тя предлага оптимално сцепление и безопасност.</p>
+                <p>Една от най-впечатляващите характеристики е правата от над 900 метра, където състезателните автомобили могат да развият скорости над <strong>280 км/ч</strong>.</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding-bottom: 20px;">
+                <button class="cta-button" onclick="window.location.href='index.html'"><span>ОБРАТНО КЪМ НАЧАЛО</span></button>
+            </div>
+        </div>
+    </main>
+
+    <aside class="video-sidebar right">
+        <div class="video-card">
+            <img src="assets/videos/picture1.png" alt="Circuit View 1" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <div class="video-card">
+            <video autoplay muted loop playsinline><source src="assets/videos/video2.mp4" type="video/mp4"></video>
+        </div>
+        <div class="video-card">
+            <img src="assets/videos/picture3.png" alt="Circuit View 3" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </aside>
+
+    <footer>
+        <p>&copy; 2025 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.</p>
+    </footer>
+
+</body>
+</html>
