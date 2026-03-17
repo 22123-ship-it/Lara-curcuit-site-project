@@ -31,7 +31,7 @@
             <!-- Left Navigation -->
             <nav class="nav-group left">
                 <a href="#" class="nav-link">НАЧАЛО</a>
-                <a href="#" class="nav-link">ЗА НАС</a>
+                <a href="about.html" class="nav-link">ЗА НАС</a>
             </nav>
 
             <!-- Center Logo -->
@@ -41,7 +41,7 @@
 
             <!-- Right Navigation -->
             <nav class="nav-group right">
-                <a href="#" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="rent.html" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
                 <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
             </nav>
         </div>
@@ -69,7 +69,11 @@
         <div class="hero-section">
             <h1 class="hero-title">LARA RACING CIRCUIT</h1>
             <p class="hero-subtitle">A1 MOTOR PARK - НАЙ-МОДЕРНАТА ПИСТА В БЪЛГАРИЯ</p>
-            <button class="cta-button"><span>ЗАПАЗИ ЧАС ЗА ОБИКОЛКА</span></button>
+            <div class="hero-content">
+    <button class="cta-button" onclick="window.location.href='rent.html'">
+    <span>ЗАПАЗИ ЧАС ЗА ОБИКОЛКА</span>
+</button>
+</div>
         </div>
 
         <div class="info-section">
@@ -114,10 +118,13 @@
             </div>
 
             <div style="padding: 40px; text-align: center;">
-                <h3>Пълното изживяване на пистата</h3>
-                <p style="margin: 15px 0; color: #555;">Открийте предизвикателствата на завоите на Lara Circuit. Всяка отсечка е проектирана да тества лимита на автомобила и уменията на пилота.</p>
-                <button class="cta-button" style="margin-top: 20px;"><span>ВИЖ КАРТА НА ПИСТАТА</span></button>
-            </div>
+    <h3>Пълното изживяване на пистата</h3>
+    <p style="margin: 15px 0; color: #555;">Открийте предизвикателствата на завоите на Lara Circuit. Всяка отсечка е проектирана да тества лимита на автомобила и уменията на пилота.</p>
+    
+    <button class="cta-button" style="margin-top: 20px;" onclick="window.location.href='track.html'">
+        <span>ВИЖ КАРТА НА ПИСТАТА</span>
+    </button>
+</div>
 
             <div style="margin-top: 40px; text-align: center; padding-bottom: 40px;">
                <p style="color: var(--f1-red); font-size: 1.2rem; font-weight: bold;">Усети тръпката. Бъди шампион.</p>
@@ -142,8 +149,23 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.</p>
-    </footer>
+    <div class="footer-container">
+        <div class="footer-copy">
+            &copy; 2026 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/A1.Motor.Park/" target="_blank" class="social-icon fb">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/a1.motor.park/" target="_blank" class="social-icon ig">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@a1.motor.park" target="_blank" class="social-icon tt">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+    </div>
+</footer>
 
 </body>
 </html>
