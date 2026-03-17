@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наеми пистата | A1 Motor Park</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rent_style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="nav-group left">
+                <a href="index.html" class="nav-link">НАЧАЛО</a>
+                <a href="about.html" class="nav-link">ЗА НАС</a>
+            </nav>
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/800x800/e10600/ffffff?text=Lara'">
+            </div>
+            <nav class="nav-group right">
+                <a href="#" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
+            </nav>
+        </div>
+    </header>
+
+    <aside class="video-sidebar left">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video1.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture2.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video3.mp4" type="video/mp4"></video></div>
+    </aside>
+
+    <main class="content-canvas">
+        <div class="rent-container">
+            
+            <section class="rent-intro">
+                <h1>НАЕМАНЕ НА ТРАСЕТО</h1>
+                <p>ИЗБЕРЕТЕ ВАШАТА КАТЕГОРИЯ И ЗАПАЗЕТЕ СВОЯ ЧАС</p>
+                <div class="red-divider"></div>
+            </section>
+
+            <div class="selection-grid">
+                <div class="rent-card" onclick="selectCard(this)">
+                    <i class="fa-solid fa-motorcycle"></i>
+                    <h3>МОТОЦИКЛЕТИ</h3>
+                    <span>SPORT BIKES</span>
+                </div>
+
+                <div class="rent-card active" onclick="selectCard(this)">
+                    <i class="fa-solid fa-car"></i>
+                    <h3>АВТОМОБИЛИ</h3>
+                    <span>STREET CARS</span>
+                </div>
+
+                <div class="rent-card" onclick="selectCard(this)">
+                    <i class="fa-solid fa-car-side"></i>
+                    <h3>АВТОМОБИЛИ</h3>
+                    <span>RACECARS</span>
+                </div>
+            </div>
+
+            <section class="booking-section">
+                <form class="simple-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="ИМЕ И ФАМИЛИЯ" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="EMAIL АДРЕС" required>
+                    </div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="" disabled selected>ИЗБЕРЕТЕ ПАКЕТ</option>
+                            <option>1 ОБИКОЛКА - 25 €</option>
+                            <option>1 ЧАС - 30 €</option>
+                            <option>ПОЛОВИН ДЕН - 115 €</option>
+                            <option>ЦЯЛ ДЕН - 200 €</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="date" required>
+                    </div>
+                    
+                    <div class="button-wrapper">
+                        <button type="submit" class="cta-button">
+                            <span>ИЗПРАТИ ЗАПИТВАНЕ</span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </main>
+
+    <aside class="video-sidebar right">
+        <div class="video-card"><img src="assets/videos/picture1.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video2.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture3.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-copy">
+            &copy; 2026 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/A1.Motor.Park/" target="_blank" class="social-icon fb">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/a1.motor.park/" target="_blank" class="social-icon ig">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@a1.motor.park" target="_blank" class="social-icon tt">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        function selectCard(element) {
+            const cards = document.querySelectorAll('.rent-card');
+            cards.forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const dateInput = document.querySelector('input[type="date"]');
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        });
+    </script>
+
+</body>
+</html>

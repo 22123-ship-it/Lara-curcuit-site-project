@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>За Нас | A1 Motor Park</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="nav-group left">
+                <a href="index.html" class="nav-link">НАЧАЛО</a>
+                <a href="#" class="nav-link active">ЗА НАС</a>
+            </nav>
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Logo" class="logo-img">
+            </div>
+            <nav class="nav-group right">
+                <a href="rent.html" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
+            </nav>
+        </div>
+    </header>
+
+    <aside class="video-sidebar left">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video1.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture2.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video3.mp4" type="video/mp4"></video></div>
+    </aside>
+
+    <main class="content-canvas">
+        <div class="about-container">
+            <section class="about-intro">
+                <h1 class="about-header-text">ТОВА Е НАШИЯТ ЕКИП</h1>
+                <p class="about-subtitle">ПРОФЕСИОНАЛИСТИ, ОБЕДИНЕНИ ОТ СТРАСТТА КЪМ СКОРОСТТА</p>
+                <div class="red-divider"></div>
+            </section>
+
+            <div class="staff-grid" id="staff-container">
+                </div>
+        </div>
+    </main>
+
+    <aside class="video-sidebar right">
+        <div class="video-card"><img src="assets/videos/picture1.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video2.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture3.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-copy">
+            &copy; 2026 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.
+        </div>
+        <div class="footer-socials">
+            <a href="https://www.facebook.com/A1.Motor.Park/" target="_blank" class="social-icon fb">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/a1.motor.park/" target="_blank" class="social-icon ig">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@a1.motor.park" target="_blank" class="social-icon tt">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+    <script src="staff_data.js"></script>
+    <script>
+        const container = document.getElementById('staff-container');
+        staffMembers.forEach(person => {
+            container.innerHTML += `
+                <div class="staff-card">
+                    <img src="${person.image}" class="staff-img" alt="${person.name}">
+                    <div class="staff-overlay">
+                        <div class="overlay-content">
+                            <h2>${person.name}</h2>
+                            <div class="role">${person.role}</div>
+                            <div class="staff-desc-scroll">
+                                ${person.description}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
