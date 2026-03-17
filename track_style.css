@@ -69,3 +69,58 @@
     margin-bottom: 15px;
     font-size: 1.05rem;
 }
+
+footer {
+    background: #000;
+    padding: 20px 0;
+    border-top: 1px solid #222;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.footer-copy {
+    color: #666;
+    font-size: 0.8rem;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 1px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #111;
+    text-decoration: none;
+}
+
+/* Hover ефекти - маркови цветове */
+.social-icon.fb:hover { background: #1877F2; color: white; transform: translateY(-3px); }
+.social-icon.ig:hover { background: #E4405F; color: white; transform: translateY(-3px); }
+.social-icon.tt:hover { background: #000000; color: #00f2ea; border: 1px solid #ff0050; transform: translateY(-3px); }
+
+/* Адаптивност за телефон */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+}
