@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход / Регистрация | A1 Motor Park</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rent_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 40px auto;
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #333;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .auth-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #222;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            cursor: pointer;
+            color: #666;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .auth-tab.active {
+            color: #e10600;
+            border-bottom: 3px solid #e10600;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-form input {
+            background: #111;
+            border: 1px solid #333;
+            padding: 12px 15px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            outline: none;
+            transition: 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .auth-form input:focus {
+            border-color: #e10600;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            transition: 0.3s;
+        }
+
+        .toggle-password:hover {
+            color: #e10600;
+        }
+
+        .forgot-password {
+            text-align: right;
+            font-size: 0.75rem;
+            color: #666;
+            cursor: pointer;
+            margin-top: -10px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .forgot-password:hover {
+            color: #e10600;
+        }
+
+        .auth-description {
+            text-align: center;
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="nav-group left">
+                <a href="index.html" class="nav-link">НАЧАЛО</a>
+                <a href="about.html" class="nav-link">ЗА НАС</a>
+            </nav>
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Logo" class="logo-img">
+            </div>
+            <nav class="nav-group right">
+                <a href="rent.html" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="#" class="nav-link btn-outline active"><span><i class="fa-solid fa-user"></i> ПРОФИЛ</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <aside class="video-sidebar left">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video1.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture2.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <main class="content-canvas">
+        <div class="rent-container">
+            <section class="rent-intro">
+                <h1>ДОСТЪП ДО ПИСТАТА</h1>
+                <p>ВЛЕЗТЕ В ПРОФИЛА СИ ИЛИ СЪЗДАЙТЕ НОВ</p>
+                <div class="red-divider"></div>
+            </section>
+
+            <div class="auth-container">
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="tab-login" onclick="switchTab('login')">ВХОД</div>
+                    <div class="auth-tab" id="tab-register" onclick="switchTab('register')">РЕГИСТРАЦИЯ</div>
+                </div>
+
+                <p class="auth-description" id="auth-msg">Добре дошли отново, пилот.</p>
+
+                <form id="form-login" class="auth-form">
+                    <input type="email" placeholder="EMAIL АДРЕС" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="login-pass" placeholder="ПАРОЛА" required>
+                        <i class="fa-solid fa-eye toggle-password" onclick="togglePass('login-pass', this)"></i>
+                    </div>
+                    <div class="forgot-password" onclick="forgotPassword()">Забравена парола?</div>
+                    <button type="submit" class="cta-button"><span>ВЛЕЗ В СИСТЕМАТА</span></button>
+                </form>
+
+                <form id="form-register" class="auth-form" style="display:none;">
+                    <input type="text" placeholder="ИМЕ И ФАМИЛИЯ" required>
+                    <input type="email" placeholder="EMAIL АДРЕС" required>
+                    <div class="password-wrapper">
+                        <input type="password" id="reg-pass" placeholder="ПАРОЛА" required>
+                        <i class="fa-solid fa-eye toggle-password" onclick="togglePass('reg-pass', this)"></i>
+                    </div>
+                    <button type="submit" class="cta-button"><span>СЪЗДАЙ АКАУНТ</span></button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <aside class="video-sidebar right">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video2.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture3.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <script>
+function togglePass(inputId, icon) {
+        const input = document.getElementById(inputId);
+        if (input.type === "password") {
+            input.type = "text";
+            icon.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+            input.type = "password";
+            icon.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+    }
+
+    function forgotPassword() {
+        alert("За възстановяване на парола, моля свържете се с администратор на пистата на support@a1motorpark.bg или посетете офиса ни на място.");
+    }
+
+    function switchTab(type) {
+        const isLogin = type === 'login';
+        document.getElementById('tab-login').classList.toggle('active', isLogin);
+        document.getElementById('tab-register').classList.toggle('active', !isLogin);
+        document.getElementById('form-login').style.display = isLogin ? 'flex' : 'none';
+        document.getElementById('form-register').style.display = isLogin ? 'none' : 'flex';
+        document.getElementById('auth-msg').innerText = isLogin ? "Добре дошли отново, пилот." : "Стани част от елита на A1 Motor Park.";
+    }
+
+    // Register Logic
+    document.getElementById('form-register').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = { 
+            full_name: e.target[0].value, 
+            email: e.target[1].value, 
+            password: e.target[2].value 
+        };
+        
+        try {
+            const res = await fetch('http://127.0.0.1:8000/register', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            
+            if (res.ok) { 
+                alert("Профилът е създаден успешно!"); 
+                switchTab('login'); 
+            } else { 
+                const err = await res.json(); 
+                alert("Грешка: " + (err.detail || "Неуспешна регистрация")); 
+            }
+        } catch(err) { 
+            alert("Няма връзка с Backend-а!"); 
+        }
+    });
+
+    // Login Logic
+    document.getElementById('form-login').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const loginData = { email: e.target[0].value, password: e.target[1].value };
+        
+        try {
+            const res = await fetch('http://127.0.0.1:8000/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(loginData)
+            });
+            
+            if (res.ok) {
+                const result = await res.json();
+                
+                // ВАЖНО: Записваме всичко необходимо за работата на сайта
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('user_id', result.user_id);
+                localStorage.setItem('user_email', result.email);
+                
+                window.location.href = "index.html";
+            } else { 
+                alert("Грешен имейл или парола!"); 
+            }
+        } catch(err) { 
+            alert("Няма връзка с Backend-а!"); 
+        }
+    });
+    </script>
+</body>
+</html>

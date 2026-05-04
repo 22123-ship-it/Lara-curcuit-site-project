@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моят Профил | A1 Motor Park</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="rent_style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        .profile-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .reservation-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid #e10600;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: 0.3s;
+        }
+        .reservation-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .res-info h4 { font-family: 'Orbitron', sans-serif; color: #fff; margin: 0; }
+        .res-info p { margin: 5px 0 0; color: #ccc; font-size: 0.9rem; }
+        .status-badge {
+            background: #e10600;
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .logout-btn {
+            margin-top: 40px;
+            background: transparent;
+            border: 1px solid #555;
+            color: #888;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Orbitron';
+            transition: 0.3s;
+        }
+        .logout-btn:hover { border-color: #e10600; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="nav-group left">
+                <a href="index.html" class="nav-link">НАЧАЛО</a>
+                <a href="about.html" class="nav-link">ЗА НАС</a>
+            </nav>
+            <div class="logo-wrapper">
+                <img src="assets/logo.png" alt="Logo" class="logo-img">
+            </div>
+            <nav class="nav-group right">
+                <a href="rent.html" class="nav-link">НАЕМИ ПИСТАТА</a>
+                <a href="profile.html" class="nav-link btn-outline active"><span><i class="fa-solid fa-user"></i> ПРОФИЛ</span></a>
+            </nav>
+        </div>
+    </header>
+
+    <aside class="video-sidebar left">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video1.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture2.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <main class="content-canvas">
+        <div class="rent-container">
+            <section class="rent-intro">
+                <h1 id="user-welcome">ЗДРАВЕЙ, КЛИЕНТ</h1>
+                <p>ТУК МОЖЕШ ДА ВИДИШ ВСИЧКИ ТВОИ РЕЗЕРВАЦИИ ЗА ПИСТАТА</p>
+                <div class="red-divider"></div>
+            </section>
+
+            <div class="profile-grid" id="reservations-list">
+                <p style="color: #666;">Зареждане на резервации...</p>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">ИЗХОД ОТ ПРОФИЛА</button>
+        </div>
+    </main>
+
+    <aside class="video-sidebar right">
+        <div class="video-card"><video autoplay muted loop playsinline><source src="assets/videos/video2.mp4" type="video/mp4"></video></div>
+        <div class="video-card"><img src="assets/videos/picture3.png" style="width:100%; height:100%; object-fit:cover;"></div>
+    </aside>
+
+    <script>
+        // Check if user is logged in
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userEmail = localStorage.getItem('user_email');
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+
+            if (!isLoggedIn) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            document.getElementById('user-welcome').innerText = `ЗДРАВЕЙ, ${userEmail.split('@')[0].toUpperCase()}`;
+
+            // Fetch reservations from Python Backend
+            try {
+                const response = await fetch(`http://127.0.0.1:8000/my-reservations?email=${userEmail}`);
+                const data = await response.json();
+                
+                const list = document.getElementById('reservations-list');
+                list.innerHTML = ''; // Clear loading text
+
+                if (data.length === 0) {
+                    list.innerHTML = '<p>Все още нямате направени резервации.</p>';
+                } else {
+                    data.forEach(res => {
+                        list.innerHTML += `
+                            <div class="reservation-card">
+                                <div class="res-info">
+                                    <h4>${res.category}</h4>
+                                    <p><i class="fa-solid fa-calendar"></i> ${res.track_date} | ${res.package}</p>
+                                </div>
+                                <div class="status-badge">ПОТВЪРДЕНО</div>
+                            </div>
+                        `;
+                    });
+                }
+            } catch (error) {
+                console.error("Error loading reservations:", error);
+            }
+        });
+
+        function logout() {
+            localStorage.clear();
+            window.location.href = "index.html";
+        }
+    </script>
+</body>
+</html>

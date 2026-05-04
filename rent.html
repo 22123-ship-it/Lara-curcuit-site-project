@@ -4,30 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наеми пистата | A1 Motor Park</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="rent_style.css">
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 </head>
 <body>
 
     <header class="main-header">
         <div class="header-container">
-            <nav class="nav-group left">
-                <a href="index.html" class="nav-link">НАЧАЛО</a>
-                <a href="about.html" class="nav-link">ЗА НАС</a>
-            </nav>
-            <div class="logo-wrapper">
-                <img src="assets/logo.png" alt="Logo" class="logo-img" onerror="this.onerror=null; this.src='https://placehold.co/800x800/e10600/ffffff?text=Lara'">
-            </div>
+            <nav class="nav-group left"><a href="index.html" class="nav-link">НАЧАЛО</a><a href="about.html" class="nav-link">ЗА НАС</a></nav>
+            <div class="logo-wrapper"><img src="assets/logo.png" alt="Logo" class="logo-img"></div>
             <nav class="nav-group right">
-                <a href="#" class="nav-link btn-outline"><span>НАЕМИ ПИСТАТА</span></a>
-                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> ПРОФИЛ</a>
+                <a href="#" class="nav-link btn-outline active"><span>НАЕМИ ПИСТАТА</span></a>
+                <a href="login.html" class="nav-link btn-outline" id="profile-nav-btn"><span><i class="fa-solid fa-user"></i> ПРОФИЛ</span></a>
             </nav>
         </div>
     </header>
@@ -40,7 +30,6 @@
 
     <main class="content-canvas">
         <div class="rent-container">
-            
             <section class="rent-intro">
                 <h1>НАЕМАНЕ НА ТРАСЕТО</h1>
                 <p>ИЗБЕРЕТЕ ВАШАТА КАТЕГОРИЯ И ЗАПАЗЕТЕ СВОЯ ЧАС</p>
@@ -48,35 +37,21 @@
             </section>
 
             <div class="selection-grid">
-                <div class="rent-card" onclick="selectCard(this)">
-                    <i class="fa-solid fa-motorcycle"></i>
-                    <h3>МОТОЦИКЛЕТИ</h3>
-                    <span>SPORT BIKES</span>
-                </div>
-
                 <div class="rent-card active" onclick="selectCard(this)">
-                    <i class="fa-solid fa-car"></i>
-                    <h3>АВТОМОБИЛИ</h3>
-                    <span>STREET CARS</span>
+                    <i class="fa-solid fa-motorcycle"></i><h3>МОТОЦИКЛЕТИ</h3><span>SPORT BIKES</span>
                 </div>
-
                 <div class="rent-card" onclick="selectCard(this)">
-                    <i class="fa-solid fa-car-side"></i>
-                    <h3>АВТОМОБИЛИ</h3>
-                    <span>RACECARS</span>
+                    <i class="fa-solid fa-car"></i><h3>АВТОМОБИЛИ</h3><span>STREET CARS</span>
+                </div>
+                <div class="rent-card" onclick="selectCard(this)">
+                    <i class="fa-solid fa-car-side"></i><h3>АВТОМОБИЛИ</h3><span>RACECARS</span>
                 </div>
             </div>
 
             <section class="booking-section">
-                <form class="simple-form">
+                <form class="simple-form" id="booking-form">
                     <div class="form-group">
-                        <input type="text" placeholder="ИМЕ И ФАМИЛИЯ" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="EMAIL АДРЕС" required>
-                    </div>
-                    <div class="form-group">
-                        <select required>
+                        <select required id="package-select">
                             <option value="" disabled selected>ИЗБЕРЕТЕ ПАКЕТ</option>
                             <option>1 ОБИКОЛКА - 25 €</option>
                             <option>1 ЧАС - 30 €</option>
@@ -84,18 +59,12 @@
                             <option>ЦЯЛ ДЕН - 200 €</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <input type="date" required>
-                    </div>
-                    
+                    <div class="form-group"><input type="date" required id="booking-date"></div>
                     <div class="button-wrapper">
-                        <button type="submit" class="cta-button">
-                            <span>ИЗПРАТИ ЗАПИТВАНЕ</span>
-                        </button>
+                        <button type="submit" class="cta-button"><span>ИЗПРАТИ ЗАПИТВАНЕ</span></button>
                     </div>
                 </form>
             </section>
-
         </div>
     </main>
 
@@ -105,38 +74,48 @@
         <div class="video-card"><img src="assets/videos/picture3.png" style="width:100%; height:100%; object-fit:cover;"></div>
     </aside>
 
-    <footer>
-    <div class="footer-container">
-        <div class="footer-copy">
-            &copy; 2026 LARA RACING CIRCUIT (A1 MOTOR PARK). ВСИЧКИ ПРАВА ЗАПАЗЕНИ.
-        </div>
-        <div class="footer-socials">
-            <a href="https://www.facebook.com/A1.Motor.Park/" target="_blank" class="social-icon fb">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="https://www.instagram.com/a1.motor.park/" target="_blank" class="social-icon ig">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.tiktok.com/@a1.motor.park" target="_blank" class="social-icon tt">
-                <i class="fa-brands fa-tiktok"></i>
-            </a>
-        </div>
-    </div>
-</footer>
-
     <script>
         function selectCard(element) {
-            const cards = document.querySelectorAll('.rent-card');
-            cards.forEach(card => card.classList.remove('active'));
+            document.querySelectorAll('.rent-card').forEach(card => card.classList.remove('active'));
             element.classList.add('active');
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const dateInput = document.querySelector('input[type="date"]');
-            const today = new Date().toISOString().split('T')[0];
-            dateInput.setAttribute('min', today);
+        // Set min date to today
+        const dateInput = document.getElementById('booking-date');
+        if(dateInput) dateInput.min = new Date().toISOString().split('T')[0];
+
+        document.getElementById('booking-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const userId = localStorage.getItem('user_id');
+            if (!userId) {
+                alert("Моля, първо влезте в профила си!");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const bookingData = {
+                user_id: parseInt(userId),
+                track_date: document.getElementById('booking-date').value,
+                category: document.querySelector('.rent-card.active h3').innerText,
+                package: document.getElementById('package-select').value
+            };
+
+            try {
+                const res = await fetch('http://127.0.0.1:8000/book', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(bookingData)
+                });
+
+                if (res.ok) {
+                    alert("Резервацията е успешна!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Грешка при резервация.");
+                }
+            } catch (err) { alert("Няма връзка със сървъра!"); }
         });
     </script>
-
 </body>
 </html>

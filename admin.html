@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ Панел | A1 Motor Park</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        /* ADMIN SPECIFIC STYLES */
+        body {
+            background-color: #050505;
+            color: white;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: #111;
+            border-bottom: 2px solid #e10600;
+        }
+
+        .admin-container {
+            padding: 40px 5%;
+        }
+
+        .admin-table-wrapper {
+            background: rgba(20, 20, 20, 0.95);
+            border: 1px solid #333;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .admin-table th {
+            background: #e10600;
+            color: white;
+            padding: 15px;
+            font-family: 'Orbitron', sans-serif;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        .admin-table td {
+            padding: 15px;
+            border-bottom: 1px solid #222;
+            color: #ccc;
+        }
+
+        .admin-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .btn-delete:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 4px;
+            background: #2ecc71;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* LOCK OVERLAY */
+        #admin-lock-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .pin-input {
+            background: #111;
+            border: 2px solid #e10600;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 15px;
+            width: 220px;
+            letter-spacing: 15px;
+            outline: none;
+            margin-top: 20px;
+        }
+
+        .lock-title {
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="admin-lock-overlay">
+        <i class="fa-solid fa-lock" style="color: #e10600; font-size: 3rem; margin-bottom: 20px;"></i>
+        <h2 class="lock-title">ВЪВЕДЕТЕ АДМИН PIN</h2>
+        <input type="password" id="admin-pin" class="pin-input" maxlength="4" oninput="checkPin(this.value)" autofocus>
+        <p id="error-msg" style="color: #e10600; margin-top: 20px; font-family: 'Roboto'; display: none; text-transform: uppercase; font-weight: bold;">Грешен код! Опитайте отново.</p>
+    </div>
+
+    <header class="admin-header">
+        <h1 style="font-family: 'Orbitron'; font-size: 1.5rem; margin: 0;">A1 <span style="color: #e10600;">ADMIN</span> CONTROL</h1>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <a href="index.html" style="color: #888; text-decoration: none; font-family: 'Orbitron'; font-size: 0.8rem;">КЪМ САЙТА</a>
+            <button onclick="logoutAdmin()" style="background: #e10600; color: white; border: none; padding: 8px 15px; font-family: 'Orbitron'; cursor: pointer;">ИЗХОД</button>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <h2 style="font-family: 'Orbitron'; margin-bottom: 10px;">АКТИВНИ РЕЗЕРВАЦИИ</h2>
+        <div style="width: 60px; height: 4px; background: #e10600; margin-bottom: 30px;"></div>
+
+        <div class="admin-table-wrapper">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Пилот</th>
+                        <th>Email</th>
+                        <th>Дата</th>
+                        <th>Категория</th>
+                        <th>Пакет</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody id="res-list">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const SECRET_PIN = "1234"; // СМЕНИ ТОЗИ ПИН ТУК, БРО!
+
+        // --- SECURITY LOGIC ---
+        function checkPin(val) {
+            if (val.length === 4) {
+                if (val === SECRET_PIN) {
+                    document.getElementById('admin-lock-overlay').style.display = 'none';
+                    sessionStorage.setItem('admin_auth', 'true');
+                    loadData();
+                } else {
+                    document.getElementById('error-msg').style.display = 'block';
+                    document.getElementById('admin-pin').value = '';
+                }
+            }
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('admin_auth');
+            window.location.reload();
+        }
+
+        // --- DATA LOGIC ---
+        async function loadData() {
+            try {
+                const res = await fetch('http://localhost:8000/admin/reservations');
+                const data = await res.json();
+                
+                const tableBody = document.getElementById('res-list');
+                tableBody.innerHTML = '';
+
+                if (data.length === 0) {
+                    tableBody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 30px;">Няма намерени резервации.</td></tr>';
+                    return;
+                }
+
+                data.forEach(row => {
+                    tableBody.innerHTML += `
+                        <tr id="res-${row.id}">
+                            <td>#${row.id}</td>
+                            <td style="font-weight: bold; color: white;">${row.full_name}</td>
+                            <td>${row.email}</td>
+                            <td>${row.track_date}</td>
+                            <td>${row.category}</td>
+                            <td>${row.package}</td>
+                            <td><span class="status-pill">ПОТВЪРДЕНО</span></td>
+                            <td>
+                                <button class="btn-delete" onclick="deleteRes(${row.id})">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } catch (err) {
+                console.error("Грешка при зареждане:", err);
+            }
+        }
+
+        async function deleteRes(id) {
+            if (!confirm("ВНИМАНИЕ: Изтриване на резервация #" + id + "?")) return;
+
+            try {
+                const res = await fetch(`http://localhost:8000/admin/reservations/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                if (res.ok) {
+                    document.getElementById(`res-${id}`).style.opacity = '0';
+                    setTimeout(() => { document.getElementById(`res-${id}`).remove(); }, 300);
+                } else {
+                    alert("Грешка при изтриване!");
+                }
+            } catch (err) {
+                alert("Няма връзка с базата данни!");
+            }
+        }
+
+        // --- ON LOAD ---
+        window.onload = () => {
+            if (sessionStorage.getItem('admin_auth') === 'true') {
+                document.getElementById('admin-lock-overlay').style.display = 'none';
+                loadData();
+            }
+        };
+    </script>
+</body>
+</html>
